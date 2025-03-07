@@ -102,7 +102,7 @@ function Homepage() {
         </div>
 
         <div>
-          <a href="#">
+          <a href="/login">
             <InteractiveHoverButton className="bg-black text-white border-black">
               Try Now
             </InteractiveHoverButton>
