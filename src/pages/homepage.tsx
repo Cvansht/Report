@@ -135,11 +135,10 @@ function Homepage() {
             <image src={Image0} className="h-52 w-64"></image>
           </span>
         </span>
-        
       </section>
       <div>
         <span className="flex justify-center pt-20 text-2xl font-extralight tracking-widest">
-          <TypingAnimation>Revolutizing Health with AI</TypingAnimation>
+          <TypingAnimation>Revolutionizing Health with AI</TypingAnimation>
         </span>
         <span className="flex justify-center pt-2 text-4xl font-semibold">
           <TextAnimate
@@ -154,10 +153,48 @@ function Homepage() {
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
         {/* Left Text Section */}
         <div className="md:w-1/2 text-left pl-20">
-          <h2 className="text-3xl font-semibold text-black">
+          <h2 className="text-5xl font-semibold text-black">
             No bug left <span className="text-green-500">behind</span>
           </h2>
-          <p className="text-gray-600 mt-4 text-lg">
+          <p className="text-gray-600 mt-4 text-2xl">
+            Cover everything. With all development requirements naturally linked
+            to testing, you'll never overlook another test. Now, quality is
+            built right into everything you develop.
+          </p>
+        </div>
+
+        {/* Right Image Section */}
+        <div className="md:w-1/2 flex justify-center pt-11">
+          <img src={Image1} className=" h-80  shadow-2xl" />
+        </div>
+      </div>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
+        {/* Right Image Section */}
+        <div className="md:w-1/2 flex justify-center pt-11">
+          <img src={Image1} className=" h-80  shadow-2xl" />
+        </div>
+        {/* Left Text Section */}
+        <div className="md:w-1/2 text-left pl-20">
+          <h2 className="text-5xl font-semibold text-black">
+            No bug left <span className="text-green-500">behind</span>
+          </h2>
+          <p className="text-gray-600 mt-4 text-2xl">
+            Cover everything. With all development requirements naturally linked
+            to testing, you'll never overlook another test. Now, quality is
+            built right into everything you develop.
+          </p>
+        </div>
+        
+
+        
+      </div>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
+        {/* Left Text Section */}
+        <div className="md:w-1/2 text-left pl-20">
+          <h2 className="text-5xl font-semibold text-black">
+            No bug left <span className="text-green-500">behind</span>
+          </h2>
+          <p className="text-gray-600 mt-4 text-2xl">
             Cover everything. With all development requirements naturally linked
             to testing, you'll never overlook another test. Now, quality is
             built right into everything you develop.
@@ -314,7 +351,7 @@ function Homepage() {
           ))}
         </div>
       </section>
-      <footer className="bg-black text-white py-12 px-6">
+      <footer className="bg-black text-white py-12 px-6 h-96">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Products */}
           <div>
@@ -348,18 +385,6 @@ function Homepage() {
               </li>
               <li>
                 <a href="#">Exploratory Testing</a>
-              </li>
-            </ul>
-            <h4 className="text-gray-300 font-medium">By Industry</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#">Finance</a>
-              </li>
-              <li>
-                <a href="#">Technology</a>
-              </li>
-              <li>
-                <a href="#">Medical</a>
               </li>
             </ul>
           </div>
@@ -398,18 +423,6 @@ function Homepage() {
               </li>
               <li>
                 <a href="#">Xray Academy</a>
-              </li>
-              <li>
-                <a href="#">Documentation</a>
-              </li>
-              <li>
-                <a href="#">Migration to Cloud</a>
-              </li>
-              <li>
-                <a href="#">Solution Architecture</a>
-              </li>
-              <li>
-                <a href="#">Support</a>
               </li>
             </ul>
           </div>
