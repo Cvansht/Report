@@ -8,7 +8,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
   const [authStatus, setAuthStatus] = useState("idle");
-
+//@ts-ignore
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -21,7 +21,7 @@ export default function Login() {
       setTimeout(() => {
         setAuthStatus("idle");
       }, 3000);
-      nav('/')
+      nav('/upload')
     }, 1500);
   };
 

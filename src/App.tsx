@@ -1,6 +1,6 @@
-import Login from './components/Pages/Login.jsx'
-import Results from './components/Pages/Results.jsx'
-import XrayDetect from './components/Pages/XrayDetect.jsx'
+import Login from './components/Pages/Login.tsx'
+import Results from './components/Pages/Results.tsx'
+import XrayDetect from './components/Pages/XrayDetect.tsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './pages/homepage';
 
@@ -13,8 +13,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="/results" element={<Results />}/>
-        <Route path="/upload" element={<XrayDetect/>}/>
+      
+        <Route path="/results" element={
+            //@ts-ignore
+            <Results />}/>
+        <Route path="/upload" element={
+            //@ts-ignore
+            <XrayDetect/>}/>
 
       </Routes>
     </Router>

@@ -14,6 +14,7 @@ import Image3 from "../icons/accurate.png";
 import Image4 from "../icons/record.png";
 import Image0 from "../assets/img0.jpeg";
 
+
 function Homepage() {
   useEffect(() => {
     AOS.init({
@@ -157,7 +158,9 @@ function Homepage() {
           </div>
           <span>
             <div>
-              <image src={Image0} className="h-52 w-64"></image>
+              <image
+                //@ts-ignore
+               src={Image0} className="h-52 w-64"></image>
             </div>
           </span>
         </span>

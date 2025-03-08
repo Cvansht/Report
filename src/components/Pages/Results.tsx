@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { ArrowLeft, FileText, Download, Share2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-export default function Results() {
+//@ts-ignore
+export default function Results({files}) {
     const [loading, setLoading] = useState(true);
     const [analysis, setAnalysis] = useState({
         caption: "",
@@ -110,7 +110,7 @@ export default function Results() {
                 <div className="flex justify-center">
                     <div className="relative w-72 h-72 bg-gray-100 rounded-xl shadow flex items-center justify-center overflow-hidden">
                         <img
-                            src="https://res.cloudinary.com/dveqjb2e7/image/upload/v1741026229/mlbarnvk1frulnv4y0px.jpg"
+                            src={URL.createObjectURL(files[0])}
                             alt="X-ray image"
                             className="object-cover w-full h-full rounded-xl"
                             onError={(e) => (e.currentTarget.style.display = 'none')}
