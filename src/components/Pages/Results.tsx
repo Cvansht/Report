@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { ArrowLeft, FileText, Download, Share2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD:src/components/Pages/Results.tsx
 //@ts-ignore
-=======
 
->>>>>>> b05c8a1e83afb95807a751ae5fd3f9ef33f90425:src/components/Pages/Results.jsx
 export default function Results({files}) {
     const [loading, setLoading] = useState(true);
     const [analysis, setAnalysis] = useState({
@@ -57,6 +54,7 @@ export default function Results({files}) {
     };
 
     // Function to render condition items with confidence levels
+    //@ts-ignore
     const renderConditions = () => {
         if (!analysis.conditions || Object.keys(analysis.conditions).length === 0) {
             return <p className="text-gray-500 italic">No specific conditions identified</p>;
@@ -106,11 +104,13 @@ export default function Results({files}) {
             const findingsSection = rawText.split("**Findings:**")[1].split("**Assessment:**")[0];
             // Extract numbered findings
             const findings = findingsSection.match(/\d+\.\s+\*\*[^*]+\*\*[^0-9]*/g) || [];
+            //@ts-ignore
             sections[0].content = findings.map(f => f.trim().replace(/^\d+\.\s+/, ''));
         }
         
         if (rawText.includes("**Assessment:**")) {
             const assessment = rawText.split("**Assessment:**")[1].split("**Recommendations:**")[0];
+              //@ts-ignore
             sections[1].content.push(assessment.trim());
         }
         
@@ -118,6 +118,7 @@ export default function Results({files}) {
             const recommendations = rawText.split("**Recommendations:**")[1].split("**Limitations:**")[0];
             // Extract numbered recommendations
             const recs = recommendations.match(/\d+\.\s+\*\*[^*]+\*\*[^0-9]*/g) || [];
+              //@ts-ignore
             sections[2].content = recs.map(r => r.trim().replace(/^\d+\.\s+/, ''));
         }
 
@@ -130,7 +131,10 @@ export default function Results({files}) {
                             <ul className="list-disc pl-5 space-y-2">
                                 {section.content.map((item, i) => (
                                     <li key={i} className="text-gray-700">
-                                        {item.replace(/\*\*/g, '')}
+                                        
+                                        {  //@ts-ignore
+                                        
+                                        item.replace(/\*\*/g, '')}
                                     </li>
                                 ))}
                             </ul>
@@ -186,14 +190,12 @@ export default function Results({files}) {
                 {/* X-Ray Image */}
                 <div className="flex justify-center">
                     <div className="relative w-72 h-72 bg-gray-100 rounded-xl shadow flex items-center justify-center overflow-hidden">
-<<<<<<< HEAD:src/components/Pages/Results.tsx
                         <img
                             src={URL.createObjectURL(files[0])}
                             alt="X-ray image"
                             className="object-cover w-full h-full rounded-xl"
                             onError={(e) => (e.currentTarget.style.display = 'none')}
                         />
-=======
                         {files && files.length > 0 ? (
                             <img
                                 src={URL.createObjectURL(files[0])}
@@ -204,7 +206,6 @@ export default function Results({files}) {
                         ) : (
                             <p className="text-gray-400">No image available</p>
                         )}
->>>>>>> b05c8a1e83afb95807a751ae5fd3f9ef33f90425:src/components/Pages/Results.jsx
                     </div>
                 </div>
 
