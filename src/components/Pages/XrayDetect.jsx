@@ -3,8 +3,8 @@ import { Upload, FileX, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function XrayDetect() {
-  const [files, setFiles] = useState([]);
+export default function XrayDetect({setFiles,files}) {
+ 
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [progress, setProgress] = useState(0);

@@ -21,7 +21,7 @@ export default function Login() {
       setTimeout(() => {
         setAuthStatus("idle");
       }, 3000);
-      nav('/')
+      nav('/upload')
     }, 1500);
   };
 
@@ -187,3 +187,4 @@ export default function Login() {
     </div>
   );
 }
+
