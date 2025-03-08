@@ -15,11 +15,13 @@ export default function Login() {
   });
 
   // Handle input change
+    //@ts-ignore
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   // Handle form submission
+    //@ts-ignore
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
