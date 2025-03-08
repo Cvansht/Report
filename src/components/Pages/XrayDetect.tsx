@@ -1,8 +1,7 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import { Upload, FileX, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-  //@ts-ignore
 
 export default function XrayDetect({setFiles,files}) {
  
@@ -11,22 +10,21 @@ export default function XrayDetect({setFiles,files}) {
   const [progress, setProgress] = useState(0);
 
   const navigate = useNavigate();
-  //@ts-ignore
+
   const handleDrop = (e) => {
     e.preventDefault();
     const droppedFiles = Array.from(e.dataTransfer.files);
     validateAndSetFiles(droppedFiles);
   };
-  //@ts-ignore
+
   const handleChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     validateAndSetFiles(selectedFiles);
   };
-//@ts-ignore
+
   const validateAndSetFiles = (fileList) => {
     setError("");
     // Only allow image files
-    //@ts-ignore
     const imageFiles = fileList.filter((file) =>
       file.type.startsWith("image/")
     );
@@ -36,12 +34,10 @@ export default function XrayDetect({setFiles,files}) {
     }
 
     // Limit to one file for simplicity
-      //@ts-ignore
     setFiles((prevFiles) => [...prevFiles, ...imageFiles].slice(0, 1));
   };
-  //@ts-ignore
+
   const removeFile = (index) => {
-      //@ts-ignore
     setFiles(files.filter((_, i) => i !== index));
   };
 
@@ -69,7 +65,6 @@ export default function XrayDetect({setFiles,files}) {
     setError("");
 
     // Start progress simulation
-      //@ts-ignore
     const clearProgressSimulation = simulateProgress();
 
     const formData = new FormData();
@@ -143,9 +138,7 @@ export default function XrayDetect({setFiles,files}) {
 
           {files.length > 0 && (
             <ul className="mt-4 space-y-2">
-               
-              {files.map(  //@ts-ignore
-                (file, index) => (
+              {files.map((file, index) => (
                 <li key={index} className="flex justify-between items-center p-3 bg-gray-200 rounded-lg shadow-sm">
                   <span className="text-sm font-medium truncate w-3/4">{file.name}</span>
                   {!uploading && (

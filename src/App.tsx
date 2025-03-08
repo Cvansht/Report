@@ -15,16 +15,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
 
-          <Route path="/results" element={
-              //@ts-ignore
-            <Results />} />
-          <Route
-            path="/upload"
-            element={
-              //@ts-ignore
-              <XrayDetect />
-            }
-          />
+          
+          
           <Route path="/results" element={<Results files={files} />} />
           <Route
             path="/upload"
