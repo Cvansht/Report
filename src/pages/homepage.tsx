@@ -24,28 +24,30 @@ function Homepage() {
       mirror: true,   // Enable reverse animations when scrolling back up
     });
   }, []);
+
   const features = [
     {
       icon: <FaLaptop className="text-xl text-white" />,
-      title: "One Interface",
-      description: "Control your whole PC without switching between multiple interfaces.",
+      title: "Seamless Integration",
+      description: "Effortlessly integrate with existing workflows, ensuring smooth adoption and enhanced productivity.",
     },
     {
       icon: <FaRegHandPaper className="text-xl text-white" />,
-      title: "Simple Interface",
-      description: "Kavi offers a lot of features in a simple interface.",
+      title: "User-Friendly Interface",
+      description: "Designed with simplicity in mind, providing an intuitive experience without compromising functionality.",
     },
     {
       icon: <FaRobot className="text-xl text-white" />,
-      title: "Powerful LLMs",
-      description: "Kavi uses powerful LLMs like GPT-4o, LLaMA 3.3, and DeepSeek.",
+      title: "Advanced AI Capabilities",
+      description: "Leverage cutting-edge AI models for automation, decision support, and intelligent assistance.",
     },
     {
       icon: <FaLock className="text-xl text-white" />,
-      title: "Privacy-focused",
-      description: "Your data and preferences are stored locally, ensuring privacy and security.",
+      title: "Data Security & Compliance",
+      description: "Ensure privacy and compliance with industry standards, keeping your data protected at all times.",
     },
   ];
+  
 
   const plans = [
     {
@@ -149,11 +151,12 @@ function Homepage() {
               enhancing efficiency and precision for healthcare professionals.
             </p>
             <div className="flex justify-center gap-4">
-              <ShimmerButton className="shadow-4xl">
+              <a href="/upload">
+              <ShimmerButton  className="shadow-4xl">
                 <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg px-16 py-2">
                   Try Now
                 </span>
-              </ShimmerButton>
+              </ShimmerButton></a>
             </div>
           </div>
           <span>
@@ -188,12 +191,12 @@ function Homepage() {
           data-aos-duration="3000"
         >
           <h2 className="text-5xl font-semibold text-black">
-            No bug left <span className="text-green-500">behind</span>
+            Enhanced Radiologists <span className="text-green-500"> Productivity</span>
           </h2>
           <p className="text-gray-600 mt-4 text-xl">
-            Cover everything. With all development requirements naturally linked
-            to testing, you'll never overlook another test. Now, quality is
-            built right into everything you develop.
+          Streamline workflows with AI-driven tools that assist radiologists in faster diagnosis 
+          and decision-making. Reduce manual workload while maintaining accuracy and efficiency 
+          in medical imaging analysis.
           </p>
         </div>
 
@@ -225,12 +228,12 @@ function Homepage() {
           
         >
           <h2 className="text-5xl font-semibold text-black">
-            No bug left <span className="text-green-500">behind</span>
+            Automated <span className="text-green-500">Workflows</span>
           </h2>
           <p className="text-gray-600 mt-4 text-xl">
-            Cover everything. With all development requirements naturally linked
-            to testing, you'll never overlook another test. Now, quality is
-            built right into everything you develop.
+          Leverage automation to handle repetitive tasks such as report generation, 
+          image segmentation, and data analysis. Free up valuable time for radiologists 
+          to focus on complex cases and patient care.
           </p>
         </div>
       </div>
@@ -243,12 +246,12 @@ function Homepage() {
           data-aos-duration="2000"
         >
           <h2 className="text-5xl font-semibold text-black">
-            No bug left <span className="text-green-500">behind</span>
+            Workload <span className="text-green-500">Reduction</span>
           </h2>
           <p className="text-gray-600 mt-4 text-xl">
-            Cover everything. With all development requirements naturally linked
-            to testing, you'll never overlook another test. Now, quality is
-            built right into everything you develop.
+          Optimize resource allocation with AI-powered prioritization and case triaging. 
+          Reduce burnout by minimizing manual effort, enabling radiologists to focus on 
+          high-value diagnostic activities and patient interactions.
           </p>
         </div>
 
@@ -283,68 +286,75 @@ function Homepage() {
         ))}
       </div>
     </section>
-      <div className="flex items-center justify-center">
-        <div className="max-w-6xl w-full py-8 items-center justify-center  ">
-          <div className="grid grid-cols-4 gap-8 border-gray-300 pb-4 relative "></div>
-          <div className="grid grid-cols-3 gap-8 border-b border-gray-300 py-4 relative">
-            <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
-              <h3 className="text-black text-2xl font-semibold">
-                Natural Deployment
-              </h3>
-              <p className="font-light pt-3">
-                Deploy production-ready models with OpenAI API Compliance by
-                describing what you need.
-              </p>
-            </div>
-            <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
-              <h3 className="text-black text-2xl font-semibold">
-                End-to-End Experience
-              </h3>
-              <p className="font-light pt-3">
-                Build complete AI solutions using natural conversation, from
-                data to deployment.
-              </p>
-            </div>
-            <div className="pr-4 pb-2   pt-5 border-gray-300">
-              <h3 className="text-black text-2xl font-semibold">
-                End-to-End Experience
-              </h3>
-              <p className="font-light pt-3">
-                Build complete AI solutions using natural conversation, from
-                data to deployment.
-              </p>
-            </div>
-
-            <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
-              <h3 className="text-black text-2xl font-semibold">
-                End-to-End Experience
-              </h3>
-              <p className="font-light pt-3">
-                Build complete AI solutions using natural conversation, from
-                data to deployment.
-              </p>
-            </div>
-            <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
-              <h3 className="text-black text-2xl font-semibold">
-                End-to-End Experience
-              </h3>
-              <p className="font-light pt-3">
-                Build complete AI solutions using natural conversation, from
-                data to deployment.
-              </p>
-            </div>
-            <div className="pl-4 pt-5">
-              <h3 className="text-black text-2xl font-semibold">
-                End-to-End Experience
-              </h3>
-              <p className="font-light pt-3">
-                Build complete AI solutions using natural conversation, from
-                data to deployment.
-              </p>
-            </div>
-          </div>
-        </div>
+    <div className="flex items-center justify-center">
+  <div className="max-w-6xl w-full py-8 items-center justify-center">
+    <div className="grid grid-cols-4 gap-8 border-gray-300 pb-4 relative"></div>
+    <div className="grid grid-cols-3 gap-8 border-b border-gray-300 py-4 relative">
+      
+      <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
+        <h3 className="text-black text-2xl font-semibold">
+          Seamless Deployment
+        </h3>
+        <p className="font-light pt-3">
+          Effortlessly deploy AI models in real-world applications with minimal 
+          setup. Ensure compliance and reliability while accelerating time to market.
+        </p>
       </div>
+      
+      <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
+        <h3 className="text-black text-2xl font-semibold">
+          Fully Integrated AI
+        </h3>
+        <p className="font-light pt-3">
+          Experience a comprehensive AI ecosystem, connecting data processing, 
+          model training, and deployment for a streamlined workflow.
+        </p>
+      </div>
+      
+      <div className="pr-4 pb-2 pt-5 border-gray-300">
+        <h3 className="text-black text-2xl font-semibold">
+          Scalable Solutions
+        </h3>
+        <p className="font-light pt-3">
+          Easily scale AI applications to meet growing demands, from small 
+          prototypes to enterprise-level deployments.
+        </p>
+      </div>
+
+      <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
+        <h3 className="text-black text-2xl font-semibold">
+          AI-Powered Insights
+        </h3>
+        <p className="font-light pt-3">
+          Unlock deeper insights with AI-driven analytics, enabling data-backed 
+          decisions and improved operational efficiency.
+        </p>
+      </div>
+
+      <div className="pr-4 pb-2 border-r pt-5 border-gray-300">
+        <h3 className="text-black text-2xl font-semibold">
+          Enhanced Security
+        </h3>
+        <p className="font-light pt-3">
+          Protect sensitive data with robust security measures and compliance 
+          standards, ensuring AI adoption with confidence.
+        </p>
+      </div>
+
+      <div className="pl-4 pt-5">
+        <h3 className="text-black text-2xl font-semibold">
+          Continuous Optimization
+        </h3>
+        <p className="font-light pt-3">
+          Leverage AI models that learn and improve over time, adapting to 
+          evolving business needs for sustained performance.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
       <div className="flex items-center justify-center min-h-screen bg-white px-6">
         <div className="text-center max-w-4xl">
           {/* Heading */}

@@ -2,7 +2,11 @@ import  { useState } from "react";
 import { Upload, FileX, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD:src/components/Pages/XrayDetect.tsx
   //@ts-ignore
+=======
+
+>>>>>>> b05c8a1e83afb95807a751ae5fd3f9ef33f90425:src/components/Pages/XrayDetect.jsx
 export default function XrayDetect({setFiles,files}) {
  
   const [uploading, setUploading] = useState(false);

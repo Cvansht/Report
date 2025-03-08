@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { ArrowLeft, FileText, Download, Share2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD:src/components/Pages/Results.tsx
 //@ts-ignore
+=======
+
+>>>>>>> b05c8a1e83afb95807a751ae5fd3f9ef33f90425:src/components/Pages/Results.jsx
 export default function Results({files}) {
     const [loading, setLoading] = useState(true);
     const [analysis, setAnalysis] = useState({
@@ -75,6 +79,79 @@ export default function Results({files}) {
         );
     };
 
+    // Function to format diagnostic text with proper sections
+    const formatDiagnosticSummary = () => {
+        // If no caption is available, return a default message
+        if (!analysis.caption) {
+            return (
+                <p className="text-gray-700">
+                    The patient is diagnosed with Pneumonia (80%) and Lung Abnormality (90%). 
+                    No signs of Covid-19 detected. Further testing is recommended.
+                </p>
+            );
+        }
+
+        // If we have a caption but it seems to be raw text, format it properly
+        const sections = [
+            { title: "Findings", content: [] },
+            { title: "Assessment", content: [] },
+            { title: "Recommendations", content: [] }
+        ];
+
+        // Extract findings and format them as bullet points
+        // This is a simplified parsing logic - you may need to adjust based on your actual data
+        const rawText = analysis.caption;
+        
+        if (rawText.includes("**Findings:**")) {
+            const findingsSection = rawText.split("**Findings:**")[1].split("**Assessment:**")[0];
+            // Extract numbered findings
+            const findings = findingsSection.match(/\d+\.\s+\*\*[^*]+\*\*[^0-9]*/g) || [];
+            sections[0].content = findings.map(f => f.trim().replace(/^\d+\.\s+/, ''));
+        }
+        
+        if (rawText.includes("**Assessment:**")) {
+            const assessment = rawText.split("**Assessment:**")[1].split("**Recommendations:**")[0];
+            sections[1].content.push(assessment.trim());
+        }
+        
+        if (rawText.includes("**Recommendations:**")) {
+            const recommendations = rawText.split("**Recommendations:**")[1].split("**Limitations:**")[0];
+            // Extract numbered recommendations
+            const recs = recommendations.match(/\d+\.\s+\*\*[^*]+\*\*[^0-9]*/g) || [];
+            sections[2].content = recs.map(r => r.trim().replace(/^\d+\.\s+/, ''));
+        }
+
+        return (
+            <div className="space-y-4">
+                {sections.map((section, index) => (
+                    <div key={index} className={section.content.length > 0 ? "mt-4" : "hidden"}>
+                        <h3 className="text-lg font-bold text-green-700 mb-2">{section.title}</h3>
+                        {section.content.length > 0 ? (
+                            <ul className="list-disc pl-5 space-y-2">
+                                {section.content.map((item, i) => (
+                                    <li key={i} className="text-gray-700">
+                                        {item.replace(/\*\*/g, '')}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-gray-500 italic">No {section.title.toLowerCase()} available</p>
+                        )}
+                    </div>
+                ))}
+                
+                {/* If no sections were populated, display the raw text with minimal formatting */}
+                {sections.every(s => s.content.length === 0) && (
+                    <div className="prose max-w-none text-gray-700">
+                        {rawText.split('**').map((part, i) => (
+                            i % 2 === 1 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    };
+
     return (
         <div className="flex flex-col min-h-screen bg-green-50 text-gray-900">
             {/* Header */}
@@ -86,7 +163,7 @@ export default function Results({files}) {
                 >
                     <ArrowLeft className="h-6 w-6" />
                 </button>
-                <h1 className="ml-4 text-xl font-semibold">X-Ray Detection Result</h1>
+                <h1 className="ml-4 text-xl font-bold">X-Ray Detection Result</h1>
                 <div className="ml-auto flex gap-2">
                     <button className="p-2 rounded-lg hover:bg-green-800" aria-label="Download report">
                         <Download className="h-5 w-5" />
@@ -109,12 +186,25 @@ export default function Results({files}) {
                 {/* X-Ray Image */}
                 <div className="flex justify-center">
                     <div className="relative w-72 h-72 bg-gray-100 rounded-xl shadow flex items-center justify-center overflow-hidden">
+<<<<<<< HEAD:src/components/Pages/Results.tsx
                         <img
                             src={URL.createObjectURL(files[0])}
                             alt="X-ray image"
                             className="object-cover w-full h-full rounded-xl"
                             onError={(e) => (e.currentTarget.style.display = 'none')}
                         />
+=======
+                        {files && files.length > 0 ? (
+                            <img
+                                src={URL.createObjectURL(files[0])}
+                                alt="X-ray image"
+                                className="object-cover w-full h-full rounded-xl"
+                                onError={(e) => (e.currentTarget.style.display = 'none')}
+                            />
+                        ) : (
+                            <p className="text-gray-400">No image available</p>
+                        )}
+>>>>>>> b05c8a1e83afb95807a751ae5fd3f9ef33f90425:src/components/Pages/Results.jsx
                     </div>
                 </div>
 
@@ -127,19 +217,16 @@ export default function Results({files}) {
                             <p className="text-gray-500">Loading analysis results...</p>
                         </div>
                     ) : (
-                        <div className="bg-white p-5 rounded-xl shadow">
-                            <h2 className="flex items-center text-xl font-bold text-green-800">
-                                <FileText className="h-6 w-6 mr-2" /> Diagnostic Summary
-                            </h2>
-                            
-                            <p className="text-gray-700 mt-3">
-                                {analysis.caption || 
-                                "The patient is diagnosed with Pneumonia (80%) and Lung Abnormality (90%). No signs of Covid-19 detected. Further testing is recommended."}
-                            </p>
-
-                            <h3 className="text-lg font-semibold text-green-700 mt-6">Detected Conditions</h3>
-                            {renderConditions()}
-                        </div>
+                        <>
+                            {/* Diagnostic Summary */}
+                            <div className="bg-white p-5 rounded-xl shadow">
+                                <h2 className="flex items-center text-xl font-bold text-green-800 mb-4">
+                                    <FileText className="h-6 w-6 mr-2" /> Diagnostic Summary
+                                </h2>
+                                
+                                {formatDiagnosticSummary()}
+                            </div>
+                        </>
                     )}
                 </section>
             </main>
