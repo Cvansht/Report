@@ -2,7 +2,11 @@ import { TypingAnimation } from "../components/magicui/typing-animation";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { InteractiveHoverButton } from "../components/magicui/interactive-hover-button";
 import { ShimmerButton } from "../components/magicui/shimmer-button";
-
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
+import { FaLock, FaRobot, FaLaptop, FaRegHandPaper } from "react-icons/fa";
+import { FlipText } from "../components/magicui/flip-text";
 import Image1 from "../assets/image1.png";
 import Image2 from "../icons/ml.png";
 import Image3 from "../icons/accurate.png";
@@ -11,6 +15,37 @@ import Image4 from "../icons/record.png";
 import Image0 from "../assets/img0.jpeg";
 
 function Homepage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000, // Animation duration in milliseconds
+      easing: "ease-in-out", // Type of animation easing
+      once: false,    // Allow animations to trigger again when scrolling back up
+      mirror: true,   // Enable reverse animations when scrolling back up
+    });
+  }, []);
+  const features = [
+    {
+      icon: <FaLaptop className="text-xl text-white" />,
+      title: "One Interface",
+      description: "Control your whole PC without switching between multiple interfaces.",
+    },
+    {
+      icon: <FaRegHandPaper className="text-xl text-white" />,
+      title: "Simple Interface",
+      description: "Kavi offers a lot of features in a simple interface.",
+    },
+    {
+      icon: <FaRobot className="text-xl text-white" />,
+      title: "Powerful LLMs",
+      description: "Kavi uses powerful LLMs like GPT-4o, LLaMA 3.3, and DeepSeek.",
+    },
+    {
+      icon: <FaLock className="text-xl text-white" />,
+      title: "Privacy-focused",
+      description: "Your data and preferences are stored locally, ensuring privacy and security.",
+    },
+  ];
+
   const plans = [
     {
       name: "Starter",
@@ -35,24 +70,11 @@ function Homepage() {
         "Everything in Starter, plus",
         "50 projects",
         "Credits roll over to next month",
-        "Unlimited generation history",
-        "Custom asset storage",
-        "Commercial use",
+        
       ],
       buttonText: "Get this plan",
     },
-    {
-      name: "Agency",
-      price: "$48",
-      subtext: "per month billed annually",
-      credits: "60,000 free monthly rollover credits",
-      features: [
-        "Everything in Professional, plus",
-        "Unlimited project files",
-        "10% off additional credits",
-      ],
-      buttonText: "Get this plan",
-    },
+   
     {
       name: "AI Partner",
       price: "Custom",
@@ -60,9 +82,11 @@ function Homepage() {
         "Master creative AI workflows with personalized guidance from FLORA",
       features: [
         "Everything in Agency, plus",
-        "Custom-built workflows tailored for your use-case",
-        "Slack channel with founders & FLORA's AI team",
-        "White glove onboarding for the whole team",
+        "Custom-built workflows tailored",
+        "Slack channel with founders ",
+        "Slack channel with founders ",
+      
+       
       ],
       buttonText: "Get in touch",
     },
@@ -70,7 +94,7 @@ function Homepage() {
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-teal-600 to-green-400 py-6 px-8 flex items-center justify-between">
+      <nav className="bg-gradient-to-r from-teal-600 to-green-400 py-6 px-8 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-white shadow-md">
         <div className="flex items-center">
           <span className="text-white text-2xl font-bold flex items-center">
             <svg
@@ -82,7 +106,7 @@ function Homepage() {
               <path d="M12 2L15 9H9L12 2Z" fill="white" />
               <path d="M12 22L9 15H15L12 22Z" fill="white" />
             </svg>
-            Report.AI
+            Xtract.AI
           </span>
         </div>
 
@@ -104,15 +128,18 @@ function Homepage() {
         <div>
           <a href="/login">
             <InteractiveHoverButton className="bg-black text-white border-black">
-              Try Now
+              Sign Up
             </InteractiveHoverButton>
           </a>
         </div>
       </nav>
-      <section className="bg-gradient-to-r from-teal-500 to-green-400 py-16 px-6 text-white text-center h-150px">
+      <section className="bg-gradient-to-r from-teal-500 to-green-400 py-16 px-6 text-white text-center h-150px pt-40">
         <span>
           <div className="flex flex-col items-center justify-center text-center max-w-full">
-            <h1 className="text-white text-3xl md:text-5xl font-bold pb-3">
+            <h1
+              className="text-white text-3xl md:text-5xl font-bold pb-3"
+              data-aos="zoom-out-left"
+            >
               Seamless Report Generator with <br></br> Maximum Accuracy
             </h1>
             <p className="text-white text-lg md:text-xl mt-4 max-w-4xl pb-10">
@@ -122,22 +149,21 @@ function Homepage() {
             </p>
             <div className="flex justify-center gap-4">
               <ShimmerButton className="shadow-4xl">
-                <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                  Get Started
+                <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg px-16 py-2">
+                  Try Now
                 </span>
               </ShimmerButton>
-              <button className="bg-white text-teal-600 border border-white hover:bg-gray-100 font-bold py-3 px-6 rounded-md">
-                Learn More
-              </button>
             </div>
           </div>
           <span>
-            <image src={Image0} className="h-52 w-64"></image>
+            <div>
+              <image src={Image0} className="h-52 w-64"></image>
+            </div>
           </span>
         </span>
       </section>
       <div>
-        <span className="flex justify-center pt-20 text-2xl font-extralight tracking-widest">
+        <span className="flex justify-center pt-20 text-4xl font-extralight tracking-widest">
           <TypingAnimation>Revolutionizing Health with AI</TypingAnimation>
         </span>
         <span className="flex justify-center pt-2 text-4xl font-semibold">
@@ -152,11 +178,16 @@ function Homepage() {
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
         {/* Left Text Section */}
-        <div className="md:w-1/2 text-left pl-20">
+        <div
+          className="md:w-1/2 text-left pl-20"
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-duration="3000"
+        >
           <h2 className="text-5xl font-semibold text-black">
             No bug left <span className="text-green-500">behind</span>
           </h2>
-          <p className="text-gray-600 mt-4 text-2xl">
+          <p className="text-gray-600 mt-4 text-xl">
             Cover everything. With all development requirements naturally linked
             to testing, you'll never overlook another test. Now, quality is
             built right into everything you develop.
@@ -164,37 +195,54 @@ function Homepage() {
         </div>
 
         {/* Right Image Section */}
-        <div className="md:w-1/2 flex justify-center pt-11">
+        <div
+          className="md:w-1/2 flex justify-center pt-11"
+          data-aos="fade-left"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="1000"
+          data-aos-duration="2000"
+        >
           <img src={Image1} className=" h-80  shadow-2xl" />
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
         {/* Right Image Section */}
-        <div className="md:w-1/2 flex justify-center pt-11">
+        <div
+          className="md:w-1/2 flex justify-center pt-11"
+          data-aos="fade-right"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="1000"
+          data-aos-duration="2000"
+        >
           <img src={Image1} className=" h-80  shadow-2xl" />
         </div>
         {/* Left Text Section */}
-        <div className="md:w-1/2 text-left pl-20">
+        <div
+          className="md:w-1/2 text-left pl-20"
+          
+        >
           <h2 className="text-5xl font-semibold text-black">
             No bug left <span className="text-green-500">behind</span>
           </h2>
-          <p className="text-gray-600 mt-4 text-2xl">
+          <p className="text-gray-600 mt-4 text-xl">
             Cover everything. With all development requirements naturally linked
             to testing, you'll never overlook another test. Now, quality is
             built right into everything you develop.
           </p>
         </div>
-        
-
-        
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16 py-12">
         {/* Left Text Section */}
-        <div className="md:w-1/2 text-left pl-20">
+        <div
+          className="md:w-1/2 text-left pl-20"
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-duration="2000"
+        >
           <h2 className="text-5xl font-semibold text-black">
             No bug left <span className="text-green-500">behind</span>
           </h2>
-          <p className="text-gray-600 mt-4 text-2xl">
+          <p className="text-gray-600 mt-4 text-xl">
             Cover everything. With all development requirements naturally linked
             to testing, you'll never overlook another test. Now, quality is
             built right into everything you develop.
@@ -202,10 +250,36 @@ function Homepage() {
         </div>
 
         {/* Right Image Section */}
-        <div className="md:w-1/2 flex justify-center pt-11">
+        <div className="md:w-1/2 flex justify-center pt-11"
+        data-aos="fade-left"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="1000"
+        data-aos-duration="1000">
           <img src={Image1} className=" h-80  shadow-2xl" />
         </div>
       </div>
+
+      <section className="bg-gradient-to-r from-teal-600 to-green-400 text-white py-16">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-bold">Why Us</h2>
+      </div>
+      <div className="mt-8 max-w-2xl mx-auto space-y-4">
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="flex items-center bg-gray-800 p-5 rounded-lg shadow-md"
+          >
+            <div className="p-3 bg-gray-700 rounded-full mr-4">{feature.icon}</div>
+            <div>
+              <h3 className="text-lg font-semibold">{feature.title}</h3>
+              <p className="text-gray-300">{feature.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
       <div className="flex items-center justify-center">
         <div className="max-w-6xl w-full py-8 items-center justify-center  ">
           <div className="grid grid-cols-4 gap-8 border-gray-300 pb-4 relative "></div>
@@ -316,9 +390,11 @@ function Homepage() {
       </div>
       <section className="bg-black text-white py-12 px-6">
         <h3 className=" pb-10 flex items-center justify-center text-3xl font-extralight">
-          Our Pricing
+        <FlipText className=" dark:text-white md:text-3xl md:leading-[5rem] tracking-tighter" m-magic m-trigger="onScroll">
+      Our Pricing
+    </FlipText>
         </h3>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -375,13 +451,16 @@ function Homepage() {
           {/* Solutions */}
           <div>
             <h3 className="text-lg font-semibold mb-3">Solutions</h3>
-            <h4 className="text-gray-300 font-medium">By Use Case</h4>
+           
             <ul className="space-y-2 text-gray-400 mb-4">
               <li>
                 <a href="#">Agile Testing</a>
               </li>
               <li>
                 <a href="#">Test Automation</a>
+              </li>
+              <li>
+                <a href="#">Exploratory Testing</a>
               </li>
               <li>
                 <a href="#">Exploratory Testing</a>

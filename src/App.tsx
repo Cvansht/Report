@@ -3,6 +3,7 @@ import Results from './components/Pages/Results.jsx'
 import XrayDetect from './components/Pages/XrayDetect.jsx'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './pages/homepage';
+
 function App() {
 
 
@@ -17,6 +18,7 @@ function App() {
 
       </Routes>
     </Router>
+    
     </>
   )
 }

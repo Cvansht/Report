@@ -11,23 +11,22 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
-<<<<<<< HEAD
     "aos": "^2.3.4",
-=======
     "axios": "^1.8.2",
->>>>>>> a23926a843e9a5b0e0a3b6f76122c94cd3cf81c9
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
     "motion": "^12.4.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.3.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/aos": "^3.0.7",
     "@types/node": "^22.13.9",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
