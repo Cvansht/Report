@@ -7,9 +7,12 @@ from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 from flask_cors import CORS  # Import CORS
 
-# Import your model and tokenizer
 from model import ImageCaptioningModel
 from loaders import get_tokenizer
+
+from together import Together
+
+
 
 # Global variables
 MODEL_PATH = 'model.pth'
@@ -99,6 +102,7 @@ def health_check():
         'device': str(DEVICE)
     })
 
+"""
 @app.route('/api/caption', methods=['POST'])
 def generate_image_caption():
     # Check if the post request has the file part
@@ -141,6 +145,195 @@ def generate_image_caption():
       
     
     return jsonify({'error': 'Invalid file format'}), 400
+
+"""
+
+"""
+@app.route('/api/caption', methods=['POST'])
+def generate_image_caption():
+    # Check if the post request has the file part
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file in the request'}), 400
+    
+    file = request.files['image']
+    
+    # If user does not select file, browser also
+    # submit an empty part without filename
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    if file and allowed_file(file.filename):
+        # Save the file temporarily
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            # Process the image
+            transform = get_image_transform()
+            image = preprocess_image(filepath, transform)
+            image = image.to(DEVICE)
+            
+            # Generate caption
+            caption = generate_caption(MODEL, image, DEVICE, TOKENIZER)
+            
+            # Use Together AI to generate a comprehensive report from the caption
+            try:
+                api_key = os.environ.get('TOGETHER_API_KEY')
+                if not api_key:
+                    raise ValueError("TOGETHER_API_KEY not found in environment variables")
+                
+                client = Together(api_key=api_key)
+                
+                # Create a prompt that instructs Llama to generate a report based on the caption
+                prompt = f"Using the following image caption, create a comprehensive report:\n\nCaption: {caption}\n\nPlease generate a detailed, professional report based on this information."
+                
+                # For X-ray specific formatting, you could modify the prompt:
+                if "x-ray" in caption.lower() or "xray" in caption.lower():
+                    prompt = f"Using the following X-ray image caption, create a comprehensive radiological report:\n\nX-ray Caption: {caption}\n\nPlease include sections for findings, impressions, and recommendations if applicable."
+                
+                response = client.chat.completions.create(
+                    model="meta-llama/Llama-3.3-70B-Instruct-Turbo",
+                    messages=[
+                        {"role": "system", "content": "You are a helpful assistant that creates detailed reports based on image captions."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.7,
+                    max_tokens=1000
+                )
+                
+                # Extract the generated report
+                report = response.choices[0].message.content
+                
+                # Return result with both caption and report
+                return jsonify({
+                    'success': True,
+                    'caption': caption,
+                    'report': report,
+                    'filename': filename
+                })
+                
+            except Exception as e:
+                # If Together API fails, still return the caption
+                print(f"Error generating report with Together AI: {str(e)}")
+                return jsonify({
+                    'success': True,
+                    'caption': caption,
+                    'error_report': str(e),
+                    'filename': filename
+                })
+                
+        except Exception as e:
+            # Clean up the file in case of error
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
+            return jsonify({
+                'success': False,
+                'error': str(e)
+            }), 500
+        finally:
+            # Clean up temporary file
+            if os.path.exists(filepath):
+                os.remove(filepath)
+    
+    return jsonify({'error': 'Invalid file format'}), 400
+"""
+
+@app.route('/api/caption', methods=['POST'])
+def generate_image_caption():
+    # Check if the post request has the file part
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file in the request'}), 400
+    
+    file = request.files['image']
+    
+    # If user does not select file, browser also
+    # submit an empty part without filename
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    if file and allowed_file(file.filename):
+        # Save the file temporarily
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            # Process the image
+            transform = get_image_transform()
+            image = preprocess_image(filepath, transform)
+            image = image.to(DEVICE)
+            
+            # Generate caption
+            caption = generate_caption(MODEL, image, DEVICE, TOKENIZER)
+            print(caption)
+            
+            # Use Together AI to generate a comprehensive report from the caption
+            try:
+                api_key = os.environ.get('TOGETHER_API_KEY')
+                if not api_key:
+                    raise ValueError("TOGETHER_API_KEY not found in environment variables")
+                
+                client = Together(api_key=api_key)
+                
+                # Create a prompt that instructs Llama to generate a report based on the caption
+                prompt = f"Using the following image caption, create a comprehensive report:\n\nCaption: {caption}\n\nPlease generate a detailed, professional report based on this information."
+                
+                # For X-ray specific formatting, you could modify the prompt:
+                if "x-ray" in caption.lower() or "xray" in caption.lower():
+                    prompt = f"Using the following X-ray image caption, create a comprehensive radiological report:\n\nX-ray Caption: {caption}\n\nPlease include sections for findings, impressions, and recommendations if applicable."
+                
+                response = client.chat.completions.create(
+                    model="meta-llama/Llama-3.3-70B-Instruct-Turbo",
+                    messages=[
+                        {"role": "system", "content": "You are a helpful assistant that creates detailed reports based on image captions."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.7,
+                    max_tokens=1000
+                )
+
+                
+                
+                # Extract the generated report
+                report = response.choices[0].message.content
+                print(report)
+                
+                # Return result with both caption and report
+                return jsonify({
+                    'success': True,
+                    'caption': report,
+                    'report': report,
+                    'filename': filename
+                })
+                
+            except Exception as e:
+                # If Together API fails, still return the caption
+                print(f"Error generating report with Together AI: {str(e)}")
+                return jsonify({
+                    'success': True,
+                    'caption': caption,
+                    'error_report': str(e),
+                    'filename': filename
+                })
+                
+        except Exception as e:
+            # Clean up the file in case of error
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
+            return jsonify({
+                'success': False,
+                'error': str(e)
+            }), 500
+        finally:
+            # Clean up temporary file
+            if os.path.exists(filepath):
+                os.remove(filepath)
+    
+    return jsonify({'error': 'Invalid file format'}), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
